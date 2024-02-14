@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1><br><img src="/static/img/MARS-2-7.png"> Аварийный доступ</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.command1.label }}<br>
+        {{ form.command1(class="form-control") }}<br>
+        {% for error in form.command1.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.command2.label }}<br>
+        {{ form.command2(class="form-control", type="command2") }}<br>
+        {% for error in form.command2.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.command3.label }}<br>
+        {{ form.command3(class="form-control") }}<br>
+        {% for error in form.command3.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.command4.label }}<br>
+        {{ form.command4(class="form-control", type="command4") }}<br>
+        {% for error in form.command4.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}
