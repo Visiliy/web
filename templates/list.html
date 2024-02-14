@@ -16,15 +16,15 @@
         </div>
         <h4>{{ diviz }}</h4>
         <h2>Список профессий</h2>
-        {% if 'ul' == list %}
+        {% if 'ul' in list %}
             <ul>
                 {% for user in user_list %}
-                <li>{{ user }}</li>
+                <li>{{ loop.index }} - {{ user }} {% if loop.first %} первый в очереди {% elif loop.last %} последний. {% endif %}</li>
             </ul>
         {% else %}
             <ol>
                 {% for user in user_list %}
-                <li>{{ user }}</li>
+                <li>{{ loop.index }} - {{ user }} {% if loop.first %} первый в очереди {% elif loop.last %} последний. {% endif %}</li>
             </ol>
     </body>
 </html>
