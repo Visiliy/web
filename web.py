@@ -52,7 +52,7 @@ def login():
 
 
 @app.route('/table/<gender>/<female>')
-def list_prof(gender, age):
+def table(gender, age):
     text = 'Миссия Колонизация Марса'
     diviz = 'И на Марсе будут яблони цвести!'
     return render_template('list.html', title='Цвет каюты',
