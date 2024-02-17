@@ -91,14 +91,6 @@ def form_sample_get():
                           </body>
                         </html>'''
     elif request.method == 'POST':
-        print(request.form['text'])
-        print(request.form['text'])
-        print(request.form['email'])
-        print(request.form['class'])
-        print(request.form['about'])
-        print(request.form['accept'])
-        print(request.form['sex'])
-        print(request.form['a'])
         return "Форма отправлена"
 
 
