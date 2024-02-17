@@ -69,8 +69,9 @@ def member():
     with open("news.json", "rt", encoding="utf8") as f:
         news_list = json.loads(f.read())
         sws = news_list['star'][randint(0, 3)]
+        df = ", ".join(sorted(sws['prof']))
     return render_template('member.html', title='Личная карточка',
-                           misia=text, diviz=diviz, sws=sws)
+                           misia=text, diviz=diviz, sws=sws, df=df)
 
 
 if __name__ == '__main__':
