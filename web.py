@@ -51,11 +51,12 @@ def login():
     return render_template('login.html', title='Авторизация', form=form, diviz=diviz, misia=text)
 
 
-@app.route('/table/<gender>/<female>')
+@app.route('/table/<gender>/<age>')
 def table(gender, age):
+    age = int(age)
     text = 'Миссия Колонизация Марса'
     diviz = 'И на Марсе будут яблони цвести!'
-    return render_template('list.html', title='Цвет каюты',
+    return render_template('table.html', title='Цвет каюты',
                            misia=text, diviz=diviz, gender=gender, age=age)
 
 

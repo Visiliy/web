@@ -10,8 +10,8 @@
                     crossorigin="anonymous">
         <style>
             .square {
-                height: 500px;
-                width: 500px;
+                height: 550px;
+                width: 400px;
                 background-color: #222;
             }
         </style>
@@ -21,9 +21,23 @@
             <h1>{{ misia }}</h1>
         </div>
         <h4 style="color: grey">{{ diviz }}</h4>
+        <center><h2>Оформление каюты</h2></center>
         {% if gender == 'male' and age >= 21 %}
-            <div class="square"></div>
-            <img src="/static/img/MARS-2-9.png">
+            <center><table>
+                <thead>
+                    <tr>
+                        <th><div class="alert alert-secondary" role="alert"><center><h4>Цвет стен</h4></center></th>
+                        <th><div class="alert alert-secondary" role="alert"><center><h4>Эмблема</h4></center></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="square"></div></td>
+                        <td><img src="/static/img/MARS-2-9.png" width="400" height="550"></td>
+                    </tr>
+                </tbody>
+            </table></center>
+
         {% endif %}
 
     </body>
