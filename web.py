@@ -51,5 +51,13 @@ def login():
     return render_template('login.html', title='Авторизация', form=form, diviz=diviz, misia=text)
 
 
+@app.route('/table/<gender>/<female>')
+def list_prof(gender, age):
+    text = 'Миссия Колонизация Марса'
+    diviz = 'И на Марсе будут яблони цвести!'
+    return render_template('list.html', title='Цвет каюты',
+                           misia=text, diviz=diviz, gender=gender, age=age)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
