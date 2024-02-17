@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>{{ title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                    crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="alert alert-secondary" role="alert">
+            <h1>{{ misia }}</h1>
+        </div>
+        <h4 style="color: grey">{{ diviz }}</h4>
+
+        <center><h2>{{ sws["name"] }} {{ sws["surname"] }}</h2></center>
+        <center><img src="/static/img/{{ sws["photo"] }}" width="500" height="600"></center>
+        <h6><br></h6>
+        <center><h6>{{ sws["prof"] }}</h6></center>
+    </body>
+</html>

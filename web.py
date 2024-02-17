@@ -3,6 +3,8 @@ from flask import render_template, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
+import json
+from random import randint
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -58,6 +60,17 @@ def table(gender, age):
     diviz = 'И на Марсе будут яблони цвести!'
     return render_template('table.html', title='Цвет каюты',
                            misia=text, diviz=diviz, gender=gender, age=age)
+
+
+@app.route('/member')
+def member():
+    text = 'Миссия Колонизация Марса'
+    diviz = 'И на Марсе будут яблони цвести!'
+    with open("news.json", "rt", encoding="utf8") as f:
+        news_list = json.loads(f.read())
+        sws = news_list['star'][randint(0, 3)]
+    return render_template('member.html', title='Личная карточка',
+                           misia=text, diviz=diviz, sws=sws)
 
 
 if __name__ == '__main__':
