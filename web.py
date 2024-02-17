@@ -66,7 +66,7 @@ def table(gender, age):
 def member():
     text = 'Миссия Колонизация Марса'
     diviz = 'И на Марсе будут яблони цвести!'
-    with open("news.json", "rt", encoding="utf8") as f:
+    with open("templates/news.json", "rt", encoding="utf8") as f:
         news_list = json.loads(f.read())
         sws = news_list['star'][randint(0, 3)]
         df = ", ".join(sorted(sws['prof']))
