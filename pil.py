@@ -49,7 +49,6 @@ while running:
                         pos = json['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos']
                         full_address = json['response']['GeoObjectCollection']['featureMember'][
                             0]['GeoObject']['metaDataProperty']['GeocoderMetaData']['text']
-                        print(full_address)
                         kor1, kor2 = float(top[0]), float(top[1])
                         stat_kor1, stat_kor2 = float(top[0]), float(top[1])
                         FLAG1 = False
