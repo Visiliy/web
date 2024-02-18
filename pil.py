@@ -11,10 +11,13 @@ color2 = (0, 205, 255)
 color3 = (0, 205, 255)
 color4 = (255, 200, 0)
 color5 = (255, 235, 0)
+color6 = (255, 235, 0)
+true = True
 regum = 'map'
+text2 = ''
 
 pygame.init()
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((600, 650))
 
 running = True
 FLAG1 = True
@@ -49,6 +52,8 @@ while running:
                         pos = json['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos']
                         full_address = json['response']['GeoObjectCollection']['featureMember'][
                             0]['GeoObject']['metaDataProperty']['GeocoderMetaData']['text']
+                        toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["text"]
+                        text2 = toponym_address
                         kor1, kor2 = float(top[0]), float(top[1])
                         stat_kor1, stat_kor2 = float(top[0]), float(top[1])
                         FLAG1 = False
@@ -87,26 +92,37 @@ while running:
                     color2 = (0, 205, 255)
                     color3 = (0, 205, 255)
                     color5 = (255, 235, 0)
+                    color6 = (255, 235, 0)
                 elif 235 <= pos1 <= 365 and 480 <= pos2 <= 520:
                     color2 = (0, 50, 255)
                     color1 = (0, 205, 255)
                     color3 = (0, 205, 255)
                     color5 = (255, 235, 0)
+                    color6 = (255, 235, 0)
                 elif 440 <= pos1 <= 570 and 480 <= pos2 <= 520:
                     color3 = (0, 50, 255)
                     color1 = (0, 205, 255)
                     color2 = (0, 205, 255)
                     color5 = (255, 235, 0)
-                elif 30 <= pos1 <= 570 and 540 <= pos2 <= 580:
+                    color6 = (255, 235, 0)
+                elif 30 <= pos1 <= 365 and 540 <= pos2 <= 580:
                     color1 = (0, 205, 255)
                     color2 = (0, 205, 255)
                     color3 = (0, 205, 255)
                     color5 = (255, 200, 0)
+                    color6 = (255, 235, 0)
+                elif 440 <= pos1 <= 570 and 540 <= pos2 <= 580:
+                    color1 = (0, 205, 255)
+                    color2 = (0, 205, 255)
+                    color3 = (0, 205, 255)
+                    color5 = (255, 235, 0)
+                    color6 = (255, 200, 0)
                 else:
                     color1 = (0, 205, 255)
                     color2 = (0, 205, 255)
                     color3 = (0, 205, 255)
                     color5 = (255, 235, 0)
+                    color6 = (255, 235, 0)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos1, pos2 = event.pos
                 if 30 <= pos1 <= 160 and 480 <= pos2 <= 520:
@@ -115,10 +131,15 @@ while running:
                     regum = 'sat'
                 elif 235 <= pos1 <= 365 and 480 <= pos2 <= 520:
                     regum = 'sat,skl'
-                elif 30 <= pos1 <= 570 and 540 <= pos2 <= 580:
+                elif 30 <= pos1 <= 365 and 540 <= pos2 <= 580:
                     FLAG2 = False
                     FLAG1 = True
+                    true = True
+                    text2 = ''
                     x, y = 0.2, 0.2
+                elif 440 <= pos1 <= 570 and 540 <= pos2 <= 580:
+                    true = False
+                    text2 = ''
 
         s = pygame.key.get_pressed()
         if s[pygame.K_PAGEUP]:
@@ -181,9 +202,11 @@ while running:
         map_params = {
             "pt": "{0},pm2dgl".format(org_point)
         }
-
         map_request = f"http://static-maps.yandex.ru/1.x/?ll={kor1},{kor2}&spn={x},{y}&l={regum}"
-        response = requests.get(map_request, params=map_params)
+        if true:
+            response = requests.get(map_request, params=map_params)
+        else:
+            response = requests.get(map_request)
         map_file = "map.png"
         with open(map_file, "wb") as file:
             file.write(response.content)
@@ -193,6 +216,8 @@ while running:
         btn2 = 'Гибрид'
         btn3 = 'Спутник'
         btn4 = 'На главную'
+        btn5 = 'Сброс'
+        text = 'Адрес: '
         rend1 = df.render(btn1, 0, (0, 0, 0))
         pygame.draw.rect(screen, color1, ((30, 480), (130, 40)), width=0)
         screen.blit(rend1, (53, 487))
@@ -203,8 +228,16 @@ while running:
         pygame.draw.rect(screen, color3, ((440, 480), (130, 40)), width=0)
         screen.blit(rend3, (450, 487))
         rend4 = df.render(btn4, 0, (0, 0, 0))
-        pygame.draw.rect(screen, color5, ((30, 540), (540, 40)), width=0)
-        screen.blit(rend4, (230, 547))
+        pygame.draw.rect(screen, color5, ((30, 540), (335, 40)), width=0)
+        screen.blit(rend4, (116, 547))
+        pygame.draw.rect(screen, color6, ((440, 540), (130, 40)), width=0)
+        rend5 = df.render(btn5, 0, (0, 0, 0))
+        screen.blit(rend5, (465, 547))
+        df2 = pygame.font.Font(None, 25)
+        rend6 = df2.render(text, 0, (0, 0, 0))
+        rend7 = df2.render(text2, 0, (0, 0, 0))
+        screen.blit(rend6, (30, 610))
+        screen.blit(rend7, (95, 610))
         pygame.display.flip()
         os.remove(map_file)
 
