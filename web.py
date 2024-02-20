@@ -74,5 +74,13 @@ def member():
                            misia=text, diviz=diviz, sws=sws, df=df)
 
 
+@app.route('/carousel')
+def carousel():
+    text = 'Миссия Колонизация Марса'
+    diviz = 'И на Марсе будут яблони цвести!'
+    title = 'Пейзажи Марса'
+    return render_template('carousel.html')
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
