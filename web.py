@@ -82,5 +82,16 @@ def carousel():
     return render_template('carousel.html')
 
 
+@app.route('/distribution')
+def distribution():
+    text = 'Миссия Колонизация Марса'
+    diviz = 'И на Марсе будут яблони цвести!'
+    title = 'По каютам!'
+    n = 'Каюта №'
+    command = ['Ридли скотт', 'Энди Уир', 'Марк Уотни', 'Венката Капур', 'Тенди Сандерс', 'Шон Бин']
+    return render_template('distribution.html', misia=text,
+                           diviz=diviz, title=title, n=n, command=command)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
