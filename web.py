@@ -1,13 +1,26 @@
-from flask import Flask
-from flask import render_template, redirect
+from flask import Flask, flash, url_for
+from flask import render_template, redirect, request, send_from_directory
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 import json
 from random import randint
+import urllib.request
+from werkzeug.utils import secure_filename
+import os
 
+UPLOAD_FOLDER = 'static/img/'
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+app.secret_key = "cairocoders-ednalan"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 class LoginForm(FlaskForm):
@@ -91,6 +104,24 @@ def distribution():
     command = ['Ридли скотт', 'Энди Уир', 'Марк Уотни', 'Венката Капур', 'Тенди Сандерс', 'Шон Бин']
     return render_template('distribution.html', misia=text,
                            diviz=diviz, title=title, n=n, command=command)
+
+
+@app.route('/')
+def home():
+    return render_template('load_photo.html', filename='/static/img/MARS-6.png')
+
+
+@app.route('/load_photo', methods=['GET', 'POST'])
+def load_photo():
+    if request.method == 'GET':
+        return render_template('load_photo.html', filename='/static/img/MARS-6.png')
+    elif request.method == 'POST':
+        file = request.files['file']
+        print(file)
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        filename = '/static/img/' + filename
+        return render_template('load_photo.html', filename=filename)
 
 
 if __name__ == '__main__':
