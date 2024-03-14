@@ -2,7 +2,7 @@ import os
 from flask import Flask, flash, request, redirect, render_template
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'static/img/'
+UPLOAD_FOLDER = 'static/img2/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -29,8 +29,27 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file_static = filename
-            return render_template('load_photo.html', file_name=f'/static/img/{filename}')
-    return render_template('load_photo.html', file_name=f'/static/img/{file_static}')
+            return render_template('load_photo.html', file_name=f'/static/img2/{filename}')
+    return render_template('load_photo.html', file_name=f'/static/img2/{file_static}')
+
+
+@app.route('/galery', methods=['GET', 'POST'])
+def galery():
+    text = 'Миссия Колонизация Марса'
+    diviz = 'И на Марсе будут яблони цвести!'
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('ERROR')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('ERROR')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return render_template('galery.html', file_list=os.listdir('static/img2'), misia=text, diviz=diviz)
+    return render_template('galery.html', file_list=os.listdir('static/img2'), misia=text, diviz=diviz)
 
 
 if __name__ == '__main__':

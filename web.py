@@ -110,7 +110,7 @@ def distribution():
 
 @app.route('/')
 def home():
-    return render_template('load_photo.html', filename='/static/img/MARS-6.png')
+    return render_template('load_photo.html', filename='static/img2/MARS-6.png')
 
 
 if __name__ == '__main__':
