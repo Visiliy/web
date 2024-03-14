@@ -106,22 +106,11 @@ def distribution():
                            diviz=diviz, title=title, n=n, command=command)
 
 
+# templater
+
 @app.route('/')
 def home():
     return render_template('load_photo.html', filename='/static/img/MARS-6.png')
-
-
-@app.route('/load_photo', methods=['GET', 'POST'])
-def load_photo():
-    if request.method == 'GET':
-        return render_template('load_photo.html', filename='/static/img/MARS-6.png')
-    elif request.method == 'POST':
-        file = request.files['file']
-        print(file)
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        filename = '/static/img/' + filename
-        return render_template('load_photo.html', filename=filename)
 
 
 if __name__ == '__main__':

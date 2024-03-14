@@ -8,19 +8,20 @@
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-    <title>Пример формы</title>
+    <title>Отбор астронавтов</title>
 </head>
 <body>
-<center><h1>Анкета предендента</h1></center>
-<center><h2>на участие в миссии</h2></center>
+<center><h1>Загрузка фотографии</h1></center>
+<center><h3>для участия в миссии</h3></center>
 <div>
-    <form class="login_form" method="post">
+    <form class="login_form" method="post" enctype="multipart/form-data">
+        <h6>Приложите фотографию</h6>
         <div class="form-group">
-            <label for="photo">Приложите фотографию</label>
-            <input type="file" class="form-control-file" id="photo" name="file">
+            <input type=file name=file>
         </div>
+        <h6><br></h6>
         <div>
-            <img src="{{ filename }}">
+            <img src="{{ file_name }}" width="400" height="600">
         </div>
         <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
