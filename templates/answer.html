@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h6><br></h6>
+<div>
+    {% for i in list_list %}
+        <h4 style="margin-left:100px">{{ i }}</h4>
+    {% endfor %}
+</div>
+{% endblock %}
