@@ -52,5 +52,16 @@ def galery():
     return render_template('galery.html', file_list=os.listdir('static/img2'), misia=text, diviz=diviz)
 
 
+@app.route('/answer')
+def answer():
+    text = 'Миссия Колонизация Марса'
+    diviz = 'И на Марсе будут яблони цвести!'
+    title = 'Анкета'
+    list_list = ['Фамилия: Watny', 'Имя: Mark',
+                 'Образование: выше среднего', 'Профессия: штурман марсохода', 'Пол: male',
+                 'Мотивация: Всегда мечтал застрять на Марсе!', 'Готовы остаться на Марсе? True']
+    return render_template('answer.html', title=title, list_list=list_list, misia=text, diviz=diviz)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

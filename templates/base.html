@@ -7,15 +7,16 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/style_2.css"/>
     <title>{{title}}</title>
 </head>
 <body>
 <div class="alert alert-secondary" role="alert">
             <h1>{{ misia }}</h1>
         </div>
-       <h4 style="color: grey">{{ diviz }}</h4>
-<main role="main" class="container">
-    {% block content %}{% endblock %}
-</main>
+       <h4 style="color: grey; margin-left:20px">{{ diviz }}</h4>
+
+{% block content %}{% endblock %}
+
 </body>
 </html>
